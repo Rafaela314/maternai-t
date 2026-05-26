@@ -1,0 +1,55 @@
+
+############################
+# 🔹 Python
+############################
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Environment files
+env.sh
+.env.local
+.env.production
+.env.dev
+.env.staging
+
+# Virtual environments
+venv/
+.env/
+.envrc
+
+# Packaging
+build/
+dist/
+*.egg-info/
+
+# Testing / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Type checking
+.mypy_cache/
+
+# Linting
+.ruff_cache/
+
+############################
+# 🔹 Go
+############################
+# Binaries
+bin/
+*.exe
+*.out
+
+# Test binary
+*.test
+
+# Coverage
+coverage.out
+
+############################
+# 🔹 Logs
+############################
+*.log
