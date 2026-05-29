@@ -1,5 +1,7 @@
 """Database models."""
+from datetime import datetime
 from enum import Enum
+
 from sqlmodel import Field, SQLModel
 
 
@@ -34,9 +36,9 @@ class Story(SQLModel, table=True):
     city: str
     country: str
     doctor: str
-    doula: str
+    doula: str | None = Field(default=None)
     health_care_type: HealthCareType
-    midwife: str
+    midwife: str | None = Field(default=None)
     mode_of_delivery: ModeOfDelivery
     place_of_delivery_type: PlaceOfDeliveryType
     place_of_delivery: str = Field(max_length=100)
@@ -44,3 +46,5 @@ class Story(SQLModel, table=True):
     state: str
     summary: str
     title: str
+    created_at: datetime = Field(default_factory=datetime.now)
+    updated_at: datetime = Field(default_factory=datetime.now)
