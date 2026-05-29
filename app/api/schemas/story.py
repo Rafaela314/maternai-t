@@ -1,33 +1,8 @@
 """Pydantic schemas for the Story API."""
 
 from datetime import datetime
-from enum import Enum
-
 from pydantic import BaseModel, Field
-
-
-class ModeOfDelivery(str, Enum):
-    """Mode of delivery."""
-
-    VAGINAL = "vaginal"
-    C_SECTION = "c-section"
-
-
-class HealthCareType(str, Enum):
-    """Health care type."""
-
-    PUBLIC = "public"
-    INSURANCE = "insurance"
-    OUT_OF_POCKET = "private"
-
-
-class PlaceOfDeliveryType(str, Enum):
-    """Place of birth type."""
-
-    BIRTH_CENTER = "birth_center"
-    HOSPITAL = "hospital"
-    HOME = "home"
-    OTHER = "other"
+from app.database.models import ModeOfDelivery, HealthCareType, PlaceOfDeliveryType
 
 
 class BaseStory(BaseModel):
@@ -47,9 +22,11 @@ class BaseStory(BaseModel):
     title: str
 
 
-class StoryRead(BaseStory):
+class Story(BaseStory):
     """Story read model."""
     id: int
+    created_at: datetime
+    updated_at: datetime
 
 
 class StoryCreate(BaseStory):
@@ -72,4 +49,3 @@ class StoryUpdate(BaseModel):
     state: str | None = Field(default=None)
     summary: str | None = Field(default=None)
     title: str | None = Field(default=None)
-    updated_at: datetime = Field(default_factory=datetime.now)
