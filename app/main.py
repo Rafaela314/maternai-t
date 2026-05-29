@@ -1,9 +1,19 @@
 """FastAPI application entrypoint."""
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from scalar_fastapi import get_scalar_api_reference
 from app.api.router import router
+from app.database.session import create_db_tables
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan_handler(app: FastAPI):
+    """Lifespan for the application."""
+    await create_db_tables()
+    yield
+
+
+app = FastAPI(lifespan=lifespan_handler)
 app.include_router(router)
 
 
